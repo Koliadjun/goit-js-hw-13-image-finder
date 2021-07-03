@@ -1,0 +1,42 @@
+.container {
+  min-width: 320px; /* 1 */
+  margin-left: auto; /* 2 */
+  margin-right: auto; /* 2 */
+  padding-left: $gutter-size; /* 3 */
+  padding-right: $gutter-size; /* 3 */
+}
+
+@media screen and (min-width: 480px) {
+  .container {
+    width: $container-mobile-width;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    width: $container-tablet-width;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .container {
+    width: $container-desktop-width;
+  }
+}
+.header .container {
+  @extend %dis-flex;
+  align-items: center;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .footer .container {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .footer .container {
+    flex-wrap: nowrap;
+  }
+}

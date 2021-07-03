@@ -1,0 +1,3 @@
+@mixin getWidth($column-number, $gutter) {
+  width: calc((100% - (#{$gutter} * (#{$column-number}))) / #{$column-number});
+}
