@@ -22,6 +22,7 @@ const renderImgCards = (data) => {
 };
 const onSearch = async (e) => {
     e.preventDefault();
+    e.target.firstElementChild.blur();
     refs.gallery.innerHTML = '';
     if (!refs.input.value) {
         refs.loadMoreButton.classList.add('visually-hidden')
