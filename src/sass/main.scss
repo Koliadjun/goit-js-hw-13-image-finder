@@ -1,6 +1,26 @@
 // utils
 @import './utils/main';
 @import './base/main';
+.search-form {
+  transition: ease 500ms;
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+}
+.search-form input {
+  z-index: 2;
+  border-radius: 5px;
+  padding: 10px;
+  height: 40px;
+  width: 300px;
+  border: 0px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.search-form input:focus-visible {
+  outline-width: 0px;
+}
 
 .gallery {
   @extend %dis-flex;
@@ -11,8 +31,11 @@
 }
 .gallery-item {
   @include getWidth($examples-column-number-mobile, $double-gutter-size);
-
-  outline: 1px solid #eeeeee;
+  border-radius: 10px;
+  transition: ease 500ms;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 
   margin-right: $double-gutter-size;
   margin-bottom: $double-gutter-size;
@@ -22,12 +45,34 @@
   @media screen and (min-width: 1200px) {
     @include getWidth($examples-column-number-desktop, $double-gutter-size);
   }
+  &:hover {
+    transform: scale(1.1);
+  }
 }
+
+.photo-card {
+  overflow: hidden;
+  height: 300px;
+}
+
+.photo-card-img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+// .photo-card-img:hover {
+
+// }
 .stats {
+  height: 50px;
   display: flex;
   justify-content: space-around;
 }
 .stats-item {
   display: flex;
   align-items: center;
+  color: grayscale($color: hsl(0, 2%, 57%));
+}
+.stats-item i {
+  padding-right: 5px;
 }
