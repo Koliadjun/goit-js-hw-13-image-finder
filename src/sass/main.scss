@@ -23,6 +23,7 @@
 }
 
 .gallery {
+  padding-top: 30px;
   @extend %dis-flex;
   flex-wrap: wrap;
   margin-right: $double-gutter-size * -1;
