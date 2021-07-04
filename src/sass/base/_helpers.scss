@@ -18,6 +18,7 @@
   overflow: hidden;
 }
 .is-hidden {
+  transition: ease 500ms;
   visibility: hidden;
   opacity: 0;
   pointer-events: none;
