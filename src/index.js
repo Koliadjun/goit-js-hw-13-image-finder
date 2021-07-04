@@ -8,14 +8,15 @@ import imgTemplate from './templates/imgTemplate.hbs';
 import ImageAPIService from './js/apiService.js';
 import { alert } from '@pnotify/core';
 import notificationOptions from './js/notificationSettings.js';
-
+import * as basicLightbox from 'basiclightbox'
+import "basiclightbox/dist/basicLightbox.min.css"
 const serviceOptions = {
     API_KEY: '21859893-eed1f1d786560e2667ad1f26b',
     imagePerPage: 12,
 };
 const apiService = new ImageAPIService(serviceOptions);
 
-const initialMarkup = '<form class="search-form" id="search-form"><input id="search" type="search" name="query" autocomplete="off" placeholder="Search images..."/></form><ul class="gallery"></ul><div id="observe-element"></div>';
+const initialMarkup = '<div id="observe-head-element"></div><form class="search-form" id="search-form"><input id="search" type="search" name="query" autocomplete="off" placeholder="Search images..."/></form><ul class="gallery"></ul><div id="observe-element"></div>';
 const renderInitialMarkup = () => {
     document.getElementById('gallery-container').innerHTML = initialMarkup;
 };
@@ -25,6 +26,7 @@ const refs = {
     input: document.getElementById('search'),
     gallery: document.querySelector('.gallery'),
     observeElement: document.querySelector('#observe-element'),
+    observeHeadElement: document.querySelector('#observe-head-element'),
     scroll: document.querySelector('.gallery-item'),
 };
 
@@ -74,10 +76,30 @@ const loadMoreImages = async () => {
 const onEntry = () => {
     loadMoreImages();
 };
+const onUnobserve = (entries) => {
+    entries.map((entry) => {
+        if (entry.isIntersecting) {
+            refs.form.classList.remove('is-hidden')
+        } else {
+            refs.form.classList.add('is-hidden')
+        }
+    });
+};
 
 const observer = new IntersectionObserver(onEntry, {
     threshold: 0.5,
 });
+const observerHead = new IntersectionObserver(onUnobserve, {
+    threshold: 0.5,
+});
 
 observer.observe(refs.observeElement);
+observerHead.observe(refs.observeHeadElement);
 refs.form.addEventListener('submit', onSearch);
+
+
+const imgClickHandler = (e) => {
+
+    basicLightbox.create(`<img src="${e.target.dataset.src}" alt="Large image">`).show(e);
+}
+refs.gallery.addEventListener('click', imgClickHandler)
