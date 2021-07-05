@@ -26,22 +26,23 @@
   padding-top: 30px;
   @extend %dis-flex;
   flex-wrap: wrap;
-  margin-right: $double-gutter-size * -1;
+  @media screen and (min-width: 768px) {
+    margin-right: $double-gutter-size * -1;
 
-  margin-bottom: $double-gutter-size * -1;
+    margin-bottom: $double-gutter-size * -1;
+  }
 }
 .gallery-item {
-  @include getWidth($examples-column-number-mobile, $double-gutter-size);
   border-radius: 10px;
   transition: ease 500ms;
   overflow: hidden;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
     rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 
-  margin-right: $double-gutter-size;
   margin-bottom: $double-gutter-size;
   @media screen and (min-width: 768px) {
     @include getWidth($examples-column-number-tablet, $double-gutter-size);
+    margin-right: $double-gutter-size;
   }
   @media screen and (min-width: 1200px) {
     @include getWidth($examples-column-number-desktop, $double-gutter-size);
